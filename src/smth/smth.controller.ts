@@ -1,14 +1,12 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { SmthService } from './smth.service';
-import { CreateSmthDto } from './dto/create-smth.dto';
-import { UpdateSmthDto } from './dto/update-smth.dto';
 
 @Controller('smth')
 export class SmthController {
   constructor(private readonly smthService: SmthService) {}
 
   @Post()
-  create(@Body() createSmthDto: CreateSmthDto) {
+  create(@Body() createSmthDto: {}) {
     return this.smthService.create(createSmthDto);
   }
 
@@ -23,7 +21,7 @@ export class SmthController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSmthDto: UpdateSmthDto) {
+  update(@Param('id') id: string, @Body() updateSmthDto: {}) {
     return this.smthService.update(+id, updateSmthDto);
   }
 
